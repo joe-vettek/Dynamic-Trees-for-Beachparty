@@ -215,6 +215,7 @@ dependencies {
     onlyMainRuntimeOnly fg.deobf("curse.maven:jade-324717:5072729")
     onlyMainImplementation fg.deobf("curse.maven:jei-238222:5101366")
 
+    runtimeOnly fg.deobf("curse.maven:cc-tweaked-282001:5379173")
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"

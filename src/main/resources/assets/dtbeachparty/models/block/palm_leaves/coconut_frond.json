@@ -1,0 +1,6 @@
+{
+  "loader": "dtbeachparty:large_palm_fronds",
+  "textures": {
+    "frond": "dtbeachparty:block/coconut_frond"
+  }
+}

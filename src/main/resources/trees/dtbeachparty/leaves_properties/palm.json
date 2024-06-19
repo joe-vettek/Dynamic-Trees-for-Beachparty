@@ -1,4 +1,5 @@
 {
+    "type": "dynamictrees:palm",
     "primitive_leaves":"beachparty:palm_leaves",
-    "cell_kit": "dtbeachparty:coconut"
+    "cell_kit": "dynamictrees:palm"
 }

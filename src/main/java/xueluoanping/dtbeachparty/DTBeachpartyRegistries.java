@@ -1,14 +1,13 @@
 package xueluoanping.dtbeachparty;
 
 import com.ferreusveritas.dynamictrees.api.cell.CellKit;
-import com.ferreusveritas.dynamictrees.api.registry.RegistryEvent;
 import com.ferreusveritas.dynamictrees.api.registry.TypeRegistryEvent;
-import com.ferreusveritas.dynamictrees.api.worldgen.FeatureCanceller;
 import com.ferreusveritas.dynamictrees.block.leaves.LeavesProperties;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
 import com.ferreusveritas.dynamictrees.systems.fruit.Fruit;
 import com.ferreusveritas.dynamictrees.systems.genfeature.GenFeature;
 import com.ferreusveritas.dynamictrees.systems.pod.Pod;
+import com.ferreusveritas.dynamictrees.tree.family.Family;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -19,6 +18,7 @@ import xueluoanping.dtbeachparty.systems.ModCellKit;
 import xueluoanping.dtbeachparty.systems.ModGrowthLogicKits;
 import xueluoanping.dtbeachparty.systems.PalmFruitGenFeature;
 import xueluoanping.dtbeachparty.systems.pods.FallingPalmPod;
+import xueluoanping.dtbeachparty.trees.DiagonalPalmFamily;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DTBeachpartyRegistries {
@@ -30,6 +30,12 @@ public class DTBeachpartyRegistries {
     public static RegistryObject<SoundEvent> registerSound (String name){
         return SOUNDS.register(name, ()-> SoundEvent.createVariableRangeEvent(DTBeachparty.rl(name)));
     }
+
+    @SubscribeEvent
+    public static void registerFamilyTypes (final TypeRegistryEvent<Family> event) {
+        event.registerType(DTBeachparty.rl("crooked_palm"), DiagonalPalmFamily.TYPE);
+    }
+
     @SubscribeEvent
     public static void registerLeavesPropertiesTypes(final TypeRegistryEvent<LeavesProperties> event) {
         DTBeachparty.LOGGER.debug("registerLeavesPropertiesTypes");

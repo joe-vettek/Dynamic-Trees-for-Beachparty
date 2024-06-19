@@ -1,8 +1,10 @@
 {
-    "common_leaves":"dtbeachparty:palm",
+    "type": "dtbeachparty:crooked_palm",
     "common_species":"dtbeachparty:palm",
+    "common_leaves":"dtbeachparty:palm",
     "primitive_log":"beachparty:palm_log",
     "primitive_stripped_log":"beachparty:stripped_palm_log",
     "max_branch_radius":12,
-    "generate_surface_root":true
+    "primary_thickness": 3,
+    "secondary_thickness": 4
 }

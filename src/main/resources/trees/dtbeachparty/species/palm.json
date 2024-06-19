@@ -1,11 +1,12 @@
 {
+  "type": "palm",
   "family": "dtbeachparty:palm",
-  "tapering": 0.9,
-  "signal_energy": 10.0,
-  "up_probability": 1.0,
-  "lowest_branch_height": 4,
-  "growth_rate": 1,
-  "max_branch_radius": 12,
+  "tapering": 0.4,
+  "signal_energy": 16.0,
+  "lowest_branch_height": 5,
+  "max_branch_radius": 8,
+  "growth_rate": 0.8,
+  "soil_longevity": 2,
   "leaves_properties": "dtbeachparty:palm",
   "growth_logic_kit": {
     "name": "dtbeachparty:crooked_palm",
@@ -30,12 +31,10 @@
     "beachparty:palm_sapling",
     {
       "sapling_item": "beachparty:coconut",
-      "can_craft_seed_to_sapling": false
+      "can_craft_seed_to_sapling": false,
+      "sapling_to_seed_extra_ingredient": "bone_meal"
     }
   ],
-  "always_show_on_waila": false,
-  "generate_seed": true,
-  "generate_sapling": true,
   "seasonal_fruiting_offset": null,
   "inherit_fruiting_offset_to_pods": true,
   "pods": [
@@ -43,13 +42,13 @@
   ],
   "drop_seeds": false,
   "features": [
-    "roots",
     {
       "name": "dtbeachparty:palm_fruit",
       "properties": {
         "pod": "dtbeachparty:coconut",
         "fruiting_radius": 5
       }
-    }
+    },
+    "bottom_flare"
   ]
 }
