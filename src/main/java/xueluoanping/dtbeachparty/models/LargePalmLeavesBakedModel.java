@@ -17,6 +17,7 @@ import net.minecraftforge.client.NamedRenderTypeManager;
 import net.minecraftforge.client.RenderTypeGroup;
 import net.minecraftforge.client.model.IDynamicBakedModel;
 import net.minecraftforge.client.model.data.ModelData;
+import xueluoanping.dtbeachparty.DTBeachparty;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -33,13 +34,13 @@ public class LargePalmLeavesBakedModel implements IDynamicBakedModel {
 
     private final BakedModel[] bakedFronds = new BakedModel[8]; // 8 = Number of surrounding blocks
 
-    public LargePalmLeavesBakedModel(ResourceLocation modelResLoc, ResourceLocation frondsResLoc){
+    public LargePalmLeavesBakedModel(ResourceLocation modelResLoc, ResourceLocation frondsResLoc) {
         this.blockModel = new BlockModel(null, new ArrayList<>(), new HashMap<>(), false, BlockModel.GuiLight.FRONT, ItemTransforms.NO_TRANSFORMS, new ArrayList<>());
         this.frondsResLoc = frondsResLoc;
         INSTANCES.add(this);
     }
 
-    public void setupModels (){
+    public void setupModels() {
         frondsTexture = ModelUtils.getTexture(frondsResLoc);
 
         for (CoordUtils.Surround surr : CoordUtils.Surround.values()) {
@@ -89,7 +90,7 @@ public class LargePalmLeavesBakedModel implements IDynamicBakedModel {
                         // Rotate on x axis
                         len = Math.sqrt(y * y + z * z);
                         angle = Math.atan2(y, z);
-                        switch (pass){
+                        switch (pass) {
                             case 0:
                                 mult = -0.29;
                                 break;
@@ -114,7 +115,7 @@ public class LargePalmLeavesBakedModel implements IDynamicBakedModel {
                         // Rotate on y axis
                         len = Math.sqrt(x * x + z * z);
                         angle = Math.atan2(x, z);
-                        switch (pass){
+                        switch (pass) {
                             case 3:
                             case 0:
                                 mult = 0.005;
@@ -136,7 +137,7 @@ public class LargePalmLeavesBakedModel implements IDynamicBakedModel {
                         // Move to center of block
                         x += 0.5f;
                         z += 0.5f;
-                        switch (pass){
+                        switch (pass) {
                             case 0:
                                 y += 0.125;
                                 break;
@@ -146,7 +147,7 @@ public class LargePalmLeavesBakedModel implements IDynamicBakedModel {
                             default:
                                 y += 0;
                         }
-                        //y -= 0.25f;
+                        // y -= 0.25f;
 
 
                         // Move to center of palm crown
@@ -195,9 +196,13 @@ public class LargePalmLeavesBakedModel implements IDynamicBakedModel {
 
         int direction = state.getValue(PalmLeavesProperties.DynamicPalmLeavesBlock.DIRECTION);
 
-        if (direction != 0)
-            quads.addAll(bakedFronds[direction-1].getQuads(state, null, rand, extraData, renderType));
-
+        if (direction != 0) {
+            if (bakedFronds[direction - 1] == null) {
+                setupModels();
+                DTBeachparty.logger("Warning for setting for the model, include in cache ", INSTANCES.contains(this));
+            }
+            quads.addAll(bakedFronds[direction - 1].getQuads(state, null, rand, extraData, renderType));
+        }
 
         return quads;
     }
@@ -318,12 +323,12 @@ public class LargePalmLeavesBakedModel implements IDynamicBakedModel {
         }
 
         public int[] toInts() {
-            return new int[] { Float.floatToRawIntBits(x), Float.floatToRawIntBits(y), Float.floatToRawIntBits(z),
-                    color, Float.floatToRawIntBits(u), Float.floatToRawIntBits(v), 0, 0 };
+            return new int[]{Float.floatToRawIntBits(x), Float.floatToRawIntBits(y), Float.floatToRawIntBits(z),
+                    color, Float.floatToRawIntBits(u), Float.floatToRawIntBits(v), 0, 0};
         }
 
         protected int[] toInts(TextureAtlasSprite texture) {
-            return new int[] {
+            return new int[]{
                     Float.floatToRawIntBits(x), Float.floatToRawIntBits(y), Float.floatToRawIntBits(z),
                     color,
                     Float.floatToRawIntBits(texture.getU(u)), Float.floatToRawIntBits(texture.getV(v)),
